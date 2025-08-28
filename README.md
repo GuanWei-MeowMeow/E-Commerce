@@ -8,18 +8,27 @@
 # 如何開啟本地網站 (How to open the webside?)
 
 ---
+
 ## 方法一：使用 VS Code 的 Live Server 擴充功能
 
-        1.  在 VS Code 中，點擊左側的擴充功能圖示 (四個方塊)。
-        2.  搜尋 "Live Server" 並安裝它。
-        3.  安裝完成後，在 VS Code 中打開您的專案資料夾。
-        4.  在 `index.html` 檔案上按一下右鍵，選擇 "Open with Live Server"。
-        5.  它會自動打開您的預設瀏覽器，網址看起來會像 `http://127.0.0.1:5500/` 或類似。
-            這就成功了！`127.0.0.1` 和 `localhost` 是指同一件事，就是指向本機電腦。
+如果您使用 Visual Studio Code 編輯器，這是最快的方法。
+
+1.  在 VS Code 中，點擊左側的擴充功能圖示 (四個方塊)。
+2.  搜尋 "Live Server" 並安裝它。
+3.  安裝完成後，在 VS Code 中打開您的專案資料夾。
+4.  在 `index.html` 檔案上按一下右鍵，選擇 "Open with Live Server"。
+5.  它會自動打開您的預設瀏覽器，網址看起來會像 `http://127.0.0.1:5500/` 或類似。
+
+這就成功了！`127.0.0.1` 和 `localhost` 是指同一件事，就是指向**本機電腦**。
+
 ---
+
 ## 方法二：使用 Node.js
 
-1.  打開命令提示字元 (CMD) 或 PowerShell (Windows) / 終端機 (macOS)。
+如果電腦上有安裝 Node.js，這是一個非常快速的方法。
+
+1.  **打開命令提示字元 (CMD) 或 PowerShell (Windows) / 終端機 (macOS)。**
+
 2.  **安裝一個簡單的 http 伺服器套件 *(只需要做一次)*：**
     ```bash
     npm install -g http-server
