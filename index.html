@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子商務</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span style="color:rgb(31, 47, 220);">電子商務及企業電子化概論</span>模擬測驗網站</h1>
+            <div class="controls">
+                <button id="startBtn"><b>測驗開始</b></button>
+                <button id="historyBtn"><b>歷史記錄</b></button>
+                <button onclick="window.open('電子商務及企業電子化概論.pdf', '_blank')"><b>題庫閱覽</b></button>
+                <span id="progress"><span style="color:rgb(38, 185, 214);">Questions: 0/50</span></span>
+                <span id="timer"><span style="color:rgb(31, 47, 220);">Time limit: 60:00</span></span>
+            </div>
+        </header>
+
+        <main>
+            <div id="welcome-screen">
+                <h2>歡迎使用<span style="color:rgb(31, 47, 220);">電子商務及企業電子化概論</span>模擬測驗網站</h2>
+                <p>本系統將隨機抽取 <span style="color:rgb(38, 185, 214);"><b>50 題（含單選題、複選題）</b></span>進行練習。</p>
+                <p>本系統測驗結果必須達成 <span style="color:red;"><b>70 分以上（含）</b></span>才算通過。</p>
+                <p>本系統測驗時間限制於 <span style="color:rgb(31, 47, 220);"><b>60分鐘</b></span> 內作答完畢，<span style="color:red;">超時自動提交</span>。</p><hr>
+                <table>
+                    <tr>
+                        <caption><span style="color:rgb(31, 47, 220);">電子商務及企業電子化概論</b></span></br>正式考試資訊表</caption>
+                    </tr>
+                    <tr>
+                        <td><b>日期</b></td>
+                        <td><span class="highlight1">2025年09月20日</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>時間</b></td>
+                        <td><span class="highlight1">未知</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>地點</b></td>
+                        <td><span class="highlight1">未知</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>方式</b></td>
+                        <td><span class="highlight1">電腦作答</span></td>
+                    </tr>
+                </table>
+                <h5>考試資訊進程 : <span style="color:#b83bba">開放中</span></h5><hr>
+                <table>
+                    <tr>
+                        <caption><span style="color:#57c8a6;">介面按鍵</span>功能說明表</caption>
+                    </tr>
+                    <tr>
+                        <th>操作項目</th>
+                        <th>說明</th>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight2">測驗開始</span></td>
+                        <td>可立即 <span class="action">開始進行答題</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight2">歷史記錄</span></td>
+                        <td>可查看 <span class="action">曾經作答狀況</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight2">題庫閱覽</span></td>
+                        <td>附檔 <span class="action"></br>電子商務及企業</br>電子化概論題庫.pdf</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight2">重新測驗</span></td>
+                        <td>答題進度 → <strong><span class="action">刷新重做</span></strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight2">跳轉該題</span></td>
+                        <td>跳至題號 / 輸入題號</br>↓</br><strong><span class="action">作答畫面跳轉至該題</span></strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight2">標記此題</span></td>
+                        <td>將當前題目 <span class="action">加入標記清單</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight2">取消標記</span></td>
+                        <td>當前題目從標記清單 <span class="action">移除</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="quiz-container" class="hidden">
+                <div class="quiz-top-buttons">
+                    <button id="homeBtn" class="hidden">回到首頁</button>
+                    <button id="submitBtn" class="hidden">提交答案</button>
+                </div>
+                <div id="question-number">Questions : 1 / 50</div>
+                <div id="question-type" class="question-tag"></div>
+                <div id="question-text"></div>
+                <div id="media-container"></div>
+                <div id="options-container"></div>
+                <div class="jump-controls hidden">
+                    <label for="jumpToSelect">跳至題號：</label>
+                    <select id="jumpToSelect" size="3"></select>
+                    <label for="jumpToInput">輸入題號：</label>
+                    <input type="number" id="jumpToInput" min="1" placeholder="" />
+                    <button id="jumpBtn">跳轉該題</button>
+                    <span id="jumpErrorMsg" class="error-message"></span>
+                </div>
+                <!-- 已標記題目顯示區 -->
+                <div id="marked-questions-container" class="hidden">
+                    <label>標記清單（題號）：</label>
+                    <div id="marked-questions-list">
+                        <!-- Marked question numbers/buttons will go here -->
+                    </div>
+                </div>
+                <!-- 題目導覽按鈕 (包含標記按鈕) -->
+                <div class="quiz-buttons">
+                    <button id="prevBtn" disabled>上一題</button>
+                    <button id="markBtn"><b>標記此題</b></button>
+                    <button id="nextBtn">下一題</button>
+                </div>
+            </div>
+
+            <div id="results-container" class="hidden">
+                <h2>測試结果</h2>
+                <div id="score-display"></div>
+                <div id="time-taken"></div>
+                <div id="results-summary"></div>
+                <button id="reviewBtn">查看答題詳情</button>
+                <button id="homeBtnFromResults">回到首頁</button>
+                <button id="restartBtn">重新開始作答</button>
+            </div>
+
+            <div id="review-container" class="hidden">
+                <h2>答題詳情</h2>
+                <div id="review-list"></div>
+                <button id="backToResultsBtn">返回结果</button>
+            </div>
+
+            <div id="history-container" class="hidden">
+                <!-- 歷史紀錄顯示區域 -->
+            </div>
+              
+        </main>
+
+        <footer>
+            <h3>要是再沒考過，就是錦祥在帶賽</h3>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,899 @@
+/* 基礎樣式重置 */
+* 
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe Print', Consolas, '標楷體', monospace, sans-serif;
+        font-weight: bold;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f5f7fa;
+        font-size: 20px; /* 將 body 的預設字體大小設為 16px */
+        margin: 20px;
+    }
+
+    /* 調查與研究方法分析師 正式考試資訊表格 */
+    table {
+        width: 35%;
+        border-collapse: collapse;
+        margin: 10px auto;
+        font-size: 15px;
+        text-align: center; 
+    }
+    th, caption{
+        background-color: #f2f2f2;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 20px;
+        border: 1px solid black;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .highlight1 {
+        color: red;
+        font-weight: bold;
+    }
+
+    /* 介面按鍵功能說明表 */
+    table {
+        width: 50%;
+        border-collapse: collapse;
+        margin: 10px auto;
+        font-size: 15px;
+        text-align: center; 
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+    }
+    th {
+        background-color: #ffffff;
+    }
+    .highlight2 {
+        color: #57c8a6;
+        font-weight: bold;
+    }
+    .action {
+        color: #ff0c0c;
+        font-weight: bold;
+    }
+
+    /* 版面配置 */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* 標題與控制區 */
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .controls {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #progress{
+        color: rgb(38, 185, 204);  /* Questions 的顏色 */
+    }
+
+    #timer{
+        color: rgb(31, 47, 220); /* Time limit 的顏色 */
+    }
+
+    /* 主內容區域 */
+    main {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 30px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        min-height: 400px;
+    }
+
+    /* 首頁畫面 */
+    #welcome-screen {
+        text-align: center;
+    }
+
+    #welcome-screen h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    #welcome-screen p {
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    /* 题目內容 */
+    #quiz-container {
+        position: relative;
+    }
+
+    #question-number {
+        font-size: 16px;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+    }
+
+    .question-tag {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .single-choice {
+        background-color: #e1f5fe;
+        color: #0288d1;
+    }
+
+    .multiple-choice {
+        background-color: #f3e5f5;
+        color: #7b1fa2;
+    }
+
+    #question-text {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        line-height: 1.5;
+        font-family: 'Segoe Print', Consolas, '標楷體', monospace, sans-serif;
+    }
+
+    /* 選項畫面 */
+    #options-container {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .option {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        padding: 12px 15px;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .option:hover {
+        background-color: #e9ecef;
+        transform: translateX(5px);
+    }
+
+    .option.selected {
+        background-color: #e3f2fd;
+        border-left: 4px solid #2196f3;
+    }
+
+    .option input {
+        margin-right: 10px;
+        margin-top: 3px;
+    }
+
+    .option-text {
+        flex-grow: 1;           /* 讓此元素（包含文字和圖片的 span）擴展，填滿其父容器 (.option) 中的剩餘水平空間 */
+        font-family: 'Segoe Print', Consolas, '標楷體', monospace, sans-serif;
+        font-weight: bold;
+        /* display: flex; */         /* 將 span 的內容視為 flex 項目 */
+        /* align-items: center; */   /* 垂直置中 flex 項目（文字與圖片） */
+        /* gap: 8px; */             /* 在 "A." 和圖片之間增加 8px 的間距 */
+    }
+
+    /* 選項中的圖片樣式 */
+    .option .option-text img {
+        width: 30px;            /* 設定你想要的固定寬度 */
+        height: 30px;           /* 設定你想要的固定高度 (如果想讓圖標是方形的，就設成跟寬度一樣) */
+        object-fit: contain;    /* 
+                                    保持圖片的原始長寬比，同時確保整個圖片內容都顯示在設定的框內。
+                                    如果圖片原始比例不符合你設定的寬高，可能會在周圍留白。
+                                    另一個選項是 'cover'，它會填滿整個框，但可能會裁切掉部分圖片。
+                                    對於圖標來說，'contain' 通常比較適合。
+                                */
+        vertical-align: middle; /* 讓圖片在垂直方向上跟旁邊的文字對齊得更好 */
+        display: inline-block;  /* 確保圖片能正確應用寬高 */
+        margin: 0 5px;          /* <-- 添加這一行來控制左右間距 */
+        /* 如果使用 object-fit: contain 且圖片比例不一時，可以給背景色，讓留白部分看起來一致 */
+        background-color: #eee;
+    }
+
+    /* 按鈕樣式 */
+    button {
+        background-color: #57c8a6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 30 px;
+        font-family: 'Segoe Print', Consolas, '標楷體', monospace, sans-serif;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        /* 控制按鈕之間的間距 */
+        margin: 0 1px; /* 上下 0，左右各 1px */
+        white-space: nowrap; /* 強制不換行 */
+    }
+
+    .controls button {
+        display: flex;
+        align-items: center; /* 垂直置中 */
+        /* gap: 20px; */  /* 移除 gap，改用 margin 控制間距 */
+        justify-content: center; /* 水平置中 */
+        flex-wrap: nowrap; /* 不換行 */
+        font-family: 'Segoe Print', Consolas, '標楷體', monospace, sans-serif;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    button:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+    }
+
+   /* 用於包住 "回到首頁" 和 "提交答案" 按鈕的容器 */
+   .quiz-top-buttons {
+        display: flex;        /* 使用 Flexbox */
+        justify-content: space-between; /* 兩端對齊 */
+        padding: 10px 20px !important; 
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        white-space: nowrap; /* 強制不換行 */
+        align-items: center; /* 垂直置中 */
+    }
+
+    .quiz-buttons {
+        display: flex;
+        justify-content: space-between; /* 保持兩端對齊 */
+        align-items: center; /* 垂直居中 */
+        margin-top: 20px; /* 與上方內容的間距 */
+    }
+    
+    /* 可以為標記按鈕添加特定樣式 (如果需要) */
+    #markBtn {
+        background-color: #ffc107; /* 例如：黃色 */
+        color: #fafafa;
+        border-color: #ffb300;
+    }
+    #markBtn:hover {
+        background-color: #ffa000;
+    }
+    #markBtn.marked { /* 當按鈕表示 "取消標記" 時的樣式 */
+        background-color: #ef5350; /* 例如：紅色 */
+        color: white;
+        border-color: #e53935;
+    }
+    #markBtn.marked:hover {
+        background-color: #d32f2f;
+    }
+
+    #submitBtn {
+        background-color: #ffc107 !important; /* 黃金色, 強制覆蓋 */
+        color: #fffafa !important; /* 文字白色, 強制覆蓋 */
+        /* 其他樣式，例如 padding, border-radius 等，如果需要和 homeBtn 保持一致，也加上 !important */
+        border: none !important; /*如果其他地方設定了border, 要在這裡覆蓋掉*/
+    }
+    
+    #submitBtn:hover {
+        background-color: #ffa000 !important; /* 黃金色, 強制覆蓋 */
+    }
+
+    /* 結果樣式 */
+    #results-container {
+        text-align: center;
+    }
+
+    #results-container h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    #score-display {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #2980b9;
+    }
+
+    #time-taken {
+        font-size: 18px;
+        margin-bottom: 25px;
+        color: #7f8c8d;
+    }
+
+    #results-summary {
+        margin-bottom: 30px;
+    }
+
+    #review-list {
+        text-align: left;
+        margin-top: 20px;
+    }
+
+    .review-item {
+        margin-bottom: 25px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .review-item.correct {
+        background-color: #e8f5e9;
+        border-left: 4px solid #4caf50;
+    }
+
+    .review-item.incorrect {
+        background-color: #ffebee;
+        border-left: 4px solid #f44336;
+    }
+
+    .review-question {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .review-answers {
+        margin-bottom: 10px;
+    }
+
+    .user-answer {
+        color: #e74c3c;
+    }
+
+    .correct-answer {
+        color: #2ecc71;
+        font-weight: bold;
+    }
+
+    /* 工具類 */
+    .hidden {
+        display: none;
+    }
+
+    /* 頁尾 */
+    footer {
+        text-align: center;
+        padding: 20px 0;
+        color: #7f8c8d;
+        font-size: 14px;
+    }
+
+    /* 響應式設計 */
+    @media (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+        
+        main {
+            padding: 20px;
+        }
+        
+        header {
+            padding: 15px;
+        }
+        
+        .controls {
+            flex-direction: column;
+            gap: 10px;
+            align-items: stretch;
+        }
+        
+        #question-text {
+            font-size: 16px;
+        }
+        
+        .option {
+            padding: 10px;
+        }
+    }
+
+    /* 針對 media-container 和 .review-item */
+    #media-container,
+    .review-item {
+        width: 100%; /* 確保容器佔滿可用寬度 */
+        overflow-x: auto; /* 如果內容超出寬度，則顯示水平滾動條 */
+    }
+
+    /* 適用於 #media-container 和 .review-item */
+    /* 黑底白字表格樣式 */
+    #media-container table,
+    .review-item table {
+        width: auto; /* 改為 auto */
+        min-width: auto; /* 最小寬度自動設置 */
+        border-collapse: collapse;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 2px solid #333;
+        background-color: #444;
+        color: #ffffff;
+        display: inline-table; /* 確保表格和文字能正確並排 */
+        vertical-align: top;
+    }
+
+    #media-container th,
+    #media-container td,
+    .review-item th,
+    .review-item td {
+        padding: 5px 10px; /* 調整內邊距 */
+        text-align: left;
+        font-size: 20px; /* 根據需要調整 */
+        border: none; /* 移除邊框 */
+        font-family: 'Segoe Print', Consolas, '標楷體', monospace, sans-serif;
+        font-weight: bold;
+        white-space: pre-wrap;
+    }
+
+    #media-container th,
+    .review-item th {
+        background-color: #666;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    /* 針對非表格內容（題目中的文字描述）*/
+    #media-container > div,
+    .review-item > div {
+        display: block;
+        margin-top: 10px;
+        font-size: 20px;
+        font-family: 'Segoe Print', Consolas, '標楷體', monospace, sans-serif;
+        font-weight: bold;
+        padding: 15px;
+        background-color: #ffffff;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        border-radius: 8px;
+        margin-bottom: 15px;
+        color: #000000; /* 如果把背景改成深色，這裡要改成白色或淺色 */
+        width: 100%;     /* 佔滿容器寬度 */
+        word-wrap: break-word; /* 允許長單字斷行 */
+    }
+
+    /* 歷史紀錄容器樣式 */
+    #history-container {
+        padding: 20px;
+        text-align: left; /* 或 center，根據你的設計 */
+    }
+
+    #history-container h2 {
+        margin-bottom: 15px;
+    }
+
+    .history-item {
+        border: 3px solid rgb(31, 47, 220);
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        overflow: hidden; /* 重要：確保內部內容不會溢出 */
+    }
+
+    /* 用於包裹歷史紀錄內容的 div */
+    .history-item-inner {
+        padding: 15px;
+        white-space: nowrap;    /* 防止內容換行 */
+        overflow-x: auto;       /* 重要：啟用水平滾動條 */
+    }
+
+    .review-history-btn{
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;  
+    }
+
+    /* 定位到答題詳情中每個選項的容器 div */
+    .review-item .review-options > .review-option-item {
+        display: flex;                  /* 啟用 Flexbox 佈局 */
+        align-items: center;            /* 垂直居中對齊所有子元素 (編號, 文字, 圖片)  */
+        /* justify-content: left; */    /* 保留預設的左對齊即可 */
+        flex-wrap: nowrap;              /* 強制不換行，確保內容在一行顯示 */
+        gap: 5px;                       /* 在文字 ("A.") 和圖片之間添加間距 */
+        margin-bottom: 8px;             /* 在每個選項下方添加一些空間 */
+        padding: 5px;                   /* 在 flex 容器內部添加一些內邊距 */
+        overflow: hidden;
+        text-overflow: ellipsis;        /* 如果內容真的太長，用省略號顯示 */
+    }
+
+    /* 特別為這些選項中的圖片設定樣式 */
+    .review-item .review-options img {
+        height: 30px;                   /* 設定固定的高度 (例如 40px，你可以根據需要調整) */
+        width: 30px;                    /* 設定固定的寬度 (例如 60px，根據圖片常見比例調整，或設為與高度相同的值如 40px 變成方形) */
+        object-fit: contain;            /* 保持圖片的原始長寬比，同時確保整個圖片內容都顯示在設定的框內。可能會留白。 */
+        vertical-align: middle;         /* 輔助對齊，但 flex 的 align-items 是主要的 */
+        display: inline-block;          /* 確保圖片在 flex 中表現良好 */
+        background-color: #eee;    /* 為 object-fit: contain 留白的部分添加背景色，使其看起來更整齊 */
+        flex-shrink: 0; /* 防止圖片在空間不足時被壓縮 */
+        margin: 0 5px; /* 在圖片左右添加一些邊距，增加視覺分隔 */
+    }
+
+    /* 為歷史記錄檢視中選項前的 disabled input 添加樣式 */
+    .review-option-item .review-checkbox {
+        width: 18px;          /* 加大寬度 (可調整) */
+        height: 18px;         /* 加大高度 (可調整) */
+        opacity: 1;           /* 強制不透明，避免瀏覽器預設的 disabled 樣式變淡 */
+        border: 2px solid #666; /* 添加一個更粗、顏色更深的邊框 (可調整顏色和粗細) */
+        background-color: #fff; /* 設置一個明確的背景色 (未選中時) */
+        vertical-align: middle; /* 輔助垂直對齊 */
+        cursor: default;      /* 強調它不可點擊 */
+        appearance: none;     /* **重要:** 移除瀏覽器預設外觀，以便我們自訂 */
+        border-radius: 3px;   /* 可選：稍微加點圓角 */
+        position: relative;   /* 為了 ::before 偽元素定位 */
+        margin-right: 8px;              /* 在方塊和選項字母之間添加間距 */
+        flex-shrink: 0;                 /* 防止方塊在空間不足時被壓縮 */
+        /* vertical-align: middle; */   /* 嘗試讓它與文字垂直對齊 */
+        /* 讓它看起來更像一個靜態圖示，禁止任何滑鼠事件 */
+        pointer-events: none;
+    }
+
+    /* 自訂 CHECKED 狀態的外觀 (使用 ::before 偽元素) */
+    .review-option-item .review-checkbox:checked {
+        background-color: rgb(31, 47, 220); /* 選中時的背景色 */
+        border-color: rgb(189, 112, 35);    /* 選中時的邊框色 */
+    }
+
+    /* 使用 ::before 畫出核取方塊的 "勾" 或 單選按鈕的 "點" */
+    .review-option-item .review-checkbox:checked::before {
+        content: '';          /* 必須有 content */
+        position: absolute;   /* 相對於父元素 (.review-checkbox) 定位 */
+        display: block;
+        left: 50%;
+        top: 50%;
+    }
+
+    /* 特定樣式：核取方塊 (Checkbox) 的 "勾" */
+    .review-option-item input[type="checkbox"].review-checkbox:checked::before {
+        width: 5px;           /* 勾的寬度 */
+        height: 10px;         /* 勾的高度 */
+        border: solid white;  /* 勾的顏色 */
+        border-width: 0 3px 3px 0; /* 只顯示右邊和下邊的邊框，形成勾 */
+        transform: translate(-50%, -60%) rotate(45deg); /* 定位並旋轉 */
+    }
+
+    /* 特定樣式：單選按鈕 (Radio) 的 "點" */
+    .review-option-item input[type="radio"].review-checkbox {
+        border-radius: 50%; /* 單選按鈕是圓的 */
+    }
+
+    .review-option-item input[type="radio"].review-checkbox:checked::before {
+        width: 8px;           /* 點的寬度 */
+        height: 8px;          /* 點的高度 */
+        background-color: white; /* 點的顏色 */
+        border-radius: 50%;   /* 點是圓的 */
+        transform: translate(-50%, -50%); /* 定位到中心 */
+    }
+
+    /* 為選項編號添加樣式 */
+    .review-item .review-options .option-prefix {
+        font-weight: bold;
+        flex-shrink: 0; /* 防止編號被壓縮 */
+        /* margin-right: 5px; */ /* 之前的 gap 可能已經處理了間距，如果需要可以取消註解或調整 */
+        
+    }
+
+    /* 為包含文字和圖片的標籤內容 span 添加樣式 */
+    .review-item .review-options .option-label-content {
+        /* 這個 span 預設是 inline，會和裡面的文字、圖片一起流動 */
+        /* align-items: center; 這個不需要，因為父級 flex 已經處理了 */
+        line-height: 1.5; /* 調整行高可能讓文字和圖片對齊更好看 */
+    }
+
+    .review-item {
+        margin-bottom: 25px;
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto; /* 如果其他內容需要，保留這個 */
+    }
+
+    .review-history-btn:hover {
+        background-color: #2980b9;
+    }
+
+    /* ===== START: 跳題控制區樣式 (更新後) ===== */
+    .jump-controls {
+        display: flex;
+        align-items: center; /* 垂直居中 */
+        justify-content: center; /* 水平居中 */
+        gap: 8px; /* 元素間隙 */
+        margin-top: 25px;
+        margin-bottom: 15px;
+        flex-wrap: wrap; /* 允許換行 */
+        padding: 10px;
+        background-color: #f8f9fa; /* 淡背景色 */
+        border-radius: 6px;
+        border: 1px solid #eee;
+        min-height: 40px; /* 防止換行時高度跳動 */
+    }
+
+    .jump-controls label {
+        font-weight: bold;
+        color: #555;
+        white-space: nowrap; /* 防止標籤文字換行 */
+        vertical-align: middle;
+    }
+
+    .jump-controls select {
+        padding: 6px 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-family: inherit;
+        font-size: 16px;
+        /* size="5" 屬性控制高度和滾動 */
+        min-width: 60px; /* 給定最小寬度 */
+        max-width: 80px; /* 限制最大寬度 */
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    /* 輸入框樣式 */
+    #jumpToInput {
+        padding: 6px 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-family: inherit;
+        font-size: 16px;
+        width: 70px; /* 調整寬度 */
+        text-align: center;
+        vertical-align: middle;
+        /* 隱藏數字輸入框的上下箭頭 (可選) */
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+    #jumpToInput::-webkit-outer-spin-button,
+    #jumpToInput::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* 跳轉按鈕樣式 (可以根據需要調整) */
+    #jumpBtn {
+        padding: 7px 18px;
+        font-size: 16px;
+        background-color: #57c8a6; /* 藍色範例 */
+        border-color: #42ae8d;
+        margin: 0;
+        vertical-align: middle;
+    }
+    #jumpBtn:hover {
+        background-color: #2980b9;
+    }
+
+    /* 錯誤訊息樣式 */
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-left: 10px;
+        font-weight: bold;
+        display: none; /* 初始隱藏 */
+        vertical-align: middle;
+        flex-basis: 100%; /* 在換行時佔據整行 (可選) */
+        text-align: center; /* 換行時居中 (可選) */
+        margin-top: 5px; /* 換行時增加上方間距 (可選) */
+    }
+    /* ===== END: 跳題控制區樣式 ===== */
+
+    /* ===== 新增：已標記題目顯示區樣式 ===== */
+    #marked-questions-container {
+        display: flex; /* 使用 Flexbox 排列標籤和列表 */
+        align-items: center; /* 垂直居中 */
+        gap: 10px; /* 標籤和列表之間的間距 */
+        padding: 10px; /* 內部留白 */
+        background-color: #ffffff; /* 白色背景 */
+        border-radius: 6px;
+        border: 1px solid #ddd; /* 邊框 */
+        flex-wrap: wrap; /* 允許標籤和列表換行 */
+    }
+
+    #marked-questions-container label {
+        font-weight: bold;
+        color: #555;
+        white-space: nowrap; /* 防止標籤換行 */
+        flex-shrink: 0; /* 防止標籤被壓縮 */
+    }
+
+    #marked-questions-list {
+        display: flex; /* 讓標記的題號橫向排列 */
+        flex-wrap: wrap; /* 允許題號換行 */
+        gap: 8px; /* 題號按鈕之間的間距 */
+        flex-grow: 1; /* 佔滿剩餘空間 */
+    }
+
+    .marked-question-button {
+        background-color: #e3f2fd; /* 淡藍色背景 */
+        color: #1976d2; /* 藍色文字 */
+        border: 1px solid #bbdefb; /* 淡藍色邊框 */
+        padding: 4px 10px; /* 內邊距 */
+        border-radius: 15px; /* 圓角 */
+        font-size: 14px; /* 字體大小 */
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.1s;
+        white-space: nowrap; /* 防止題號內換行 */
+    }
+
+    .marked-question-button:hover {
+        background-color: #bbdefb; /* 滑鼠懸停時加深背景色 */
+        transform: scale(1.05); /* 稍微放大 */
+    }
+
+    /* (可選) 響應式調整，使跳題控制項在小螢幕上換行更好看 */
+    @media (max-width: 480px) {
+        .jump-controls {
+            gap: 5px; /* 減小間隙 */
+        }
+        .jump-controls label,
+        #jumpBtn,
+        #jumpToInput,
+        .jump-controls select {
+            font-size: 14px; /* 縮小字體 */
+            padding: 5px 8px; /* 縮小內邊距 */
+        }
+        #jumpToInput {
+            width: 60px; /* 縮小輸入框寬度 */
+        }
+        /* 讓錯誤訊息單獨佔一行並居中 */
+        .error-message {
+            flex-basis: 100%;
+            text-align: center;
+            margin-left: 0;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+    }
+
+    /* 關閉按鈕的樣式 */
+    #closeHistoryBtn {
+        background-color: #e74c3c; /* 紅色 */
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px; /* 與上方內容保持距離 */
+    }
+
+    #closeHistoryBtn:hover {
+        background-color: #c0392b; /* 深紅色 */
+    }
+
+    /* 刪除按鈕的樣式 */
+    .delete-history-btn {
+        background-color: #f44336; /* 紅色 */
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 10px; /* 與「查看詳情」按鈕保持距離 */
+    }
+
+    .delete-history-btn:hover {
+        background-color: #d32f2f; /* 深紅色 */
+    }
+
+    #homeBtn {
+        background-color: #e74c3c; /* 紅色 */
+        margin-bottom: 15px;        /* 與題目區塊的間距 */
+    }
+    
+    #homeBtn:hover{
+        background-color: #c0392b;
+    }
+
+    /* 讓兩個按鈕共用樣式 */
+    #homeBtn, #homeBtnFromResults {
+        background-color: #e74c3c;
+        margin-bottom: 15px; /* 可以根據需要調整 */
+        /* 其他共用的樣式 */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 30 px;
+        font-family: 'Segoe Print', Consolas, '標楷體', monospace, sans-serif;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        /* 控制按鈕之間的間距 */
+        margin: 0 1px; /* 上下 0，左右各 1px */
+        white-space: nowrap; /* 強制不換行 */
+    }
+
+    #homeBtn:hover, #homeBtnFromResults:hover {
+        background-color: #c0392b;
+        /* 其他 hover 效果 */
+    }
+
+    /* 響應式設計 (可選) */
+    @media (max-width: 768px) {
+        #media-container table,
+        .review-item table {
+            font-size: 20px; /* 或想要的值 */
+        }
+
+        #media-container th,
+        #media-container td,
+        .review-item th,
+        .review-item td,
+        #media-container > div,
+        .review-item > div,
+        #question-text,
+        .option-text{
+            font-size: 20px; /* 或想要的值 */
+            /* padding 也可以調整 */
+        }
+    }
+
+    /* 響應式調整 (可選) */
+    @media (max-width: 600px) { /* 調整斷點 */
+        .jump-mark-controls {
+            padding: 10px;
+        }
+        .jump-controls {
+            justify-content: flex-start; /* 小螢幕靠左排列 */
+        }
+        #marked-questions-container {
+            flex-direction: column; /* 垂直排列標籤和列表 */
+            align-items: flex-start; /* 靠左對齊 */
+        }
+        #marked-questions-list {
+            margin-top: 5px; /* 增加列表與標籤的間距 */
+        }
+        .error-message {
+            text-align: left; /* 錯誤訊息靠左 */
+            font-size: 12px;
+        }
+        .quiz-buttons {
+            flex-wrap: wrap; /* 允許按鈕換行 */
+            justify-content: center; /* 居中排列換行的按鈕 */
+            gap: 10px;
+        }
+    }
+
+    /* #media-container 中圖片的樣式 */
+    #media-container img {
+        display: block;
+        max-width: 100%; /* 圖片最大寬度不超過其容器 */
+        height: auto;    /* 高度自動縮放以保持比例 */
+        margin: 15px auto; /* 上下邊距 15px，且水平居中 */
+        border: 1px solid #ddd; /* 可選：加上淺色邊框 */
+        border-radius: 4px; /* 可選：加上圓角 */
+    }
